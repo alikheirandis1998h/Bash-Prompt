@@ -9,6 +9,7 @@
     Purple="\[\033[0;35m\]"       # Purple
     Cyan="\[\033[0;36m\]"         # Cyan
     White="\[\033[0;37m\]"        # White
+    Pink="\[\033[38;5;198m\]"     # Pink
 
     # Bold
     BBlack="\[\033[1;30m\]"       # Black
@@ -107,13 +108,14 @@ gen_prompt() {
     local __line_color=${Yellow}
     local __prompt_color=${White}
     local __text_color=${Cyan}
+    local __directory_color=${Pink}
 
     local __success_string="${Green}(✿◠‿◠)"
     local __failure_string="${Red}(◡﹏◡✿)"
     local __exit_string=$(if [[ $__last_exit -ne 0 ]]; then echo $__failure_string; else echo $__success_string; fi)
     local __prompt="> "
 
-    PS1="\n${__line_color}╭─┤${__text_color} \u@\h : \w ${__line_color}╟─┤${__exit_string}${__line_color}├─╮ $(git_prompt)\n${__line_color}╰ ${__prompt}\[$(tput sgr0)\] "
+    PS1="\n${__line_color}╭─┤${__text_color} \u@\h : ${__directory_color}\w ${__line_color}╟─┤${__exit_string}${__line_color}├─╮ $(git_prompt)\n${__line_color}╰ ${__prompt}\[$(tput sgr0)\] "
 }
 
 
